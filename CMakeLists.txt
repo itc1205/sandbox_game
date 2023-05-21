@@ -14,7 +14,10 @@ set(SOURCE
     src/core/engine.cpp
     src/core/window.cpp
     src/core/input.cpp
-    src/draw/shader.cpp)
+    src/draw/shader.cpp
+    src/draw/texture.cpp
+    src/core/mouse.cpp
+    )
 
 add_executable(app ${SOURCE})
 

@@ -1,4 +1,5 @@
 #include <core/engine.hpp>
+#include <core/mouse.hpp>
 
 namespace Engine {
 
@@ -18,6 +19,7 @@ void init() {
 void setup_callbacks() {
   glfwSetFramebufferSizeCallback(window, Callbacks::framebuffer_size_callback);
   glfwSetKeyCallback(window, Callbacks::key_callback);
+  glfwSetCursorPosCallback(window, Callbacks::mouseCallback);
 }
 
 int exit_with_error(int error) {

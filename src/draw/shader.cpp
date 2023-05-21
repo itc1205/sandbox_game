@@ -1,4 +1,6 @@
 #include <draw/shader.hpp>
+#include <logger/logger.hpp>
+
 #include <fstream>
 #include <sstream>
 
@@ -26,8 +28,8 @@ Shader::Shader(const char *vertexPath, const char *fragmentPath) {
     vertexCode = vShaderStream.str();
     fragmentCode = fShaderStream.str();
   } catch (std::ifstream::failure e) {
-    std::cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ::CAUSE::" << e.what()
-              << std::endl;
+    Logger::error("ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ::CAUSE::" +
+                  std::string(e.what()));
   }
 
   const char *vShaderCode = vertexCode.c_str();
@@ -45,34 +47,32 @@ Shader::Shader(const char *vertexPath, const char *fragmentPath) {
   glGetShaderiv(vertex, GL_COMPILE_STATUS, &success);
   if (!success) {
     glGetShaderInfoLog(vertex, 512, NULL, infoLog);
-    std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n"
-              << infoLog << std::endl;
+    Logger::warn("SHADER::VERTEX::COMPILATION_FAILED\n" + std::string(infoLog));
   };
 
   // similiar for Fragment Shader
 
-  fragment = glCreateShader(GL_VERTEX_SHADER);
+  fragment = glCreateShader(GL_FRAGMENT_SHADER);
   glShaderSource(fragment, 1, &fShaderCode, NULL);
   glCompileShader(fragment);
   // print compile errors if any
   glGetShaderiv(fragment, GL_COMPILE_STATUS, &success);
   if (!success) {
     glGetShaderInfoLog(fragment, 512, NULL, infoLog);
-    std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n"
-              << infoLog << std::endl;
+    Logger::warn("SHADER::FRAGMENT::COMPILATION_FAILED\n" +
+                 std::string(infoLog));
   };
 
   // shader Program
   ID = glCreateProgram();
-  glAttachShader(ID, vertex);
   glAttachShader(ID, fragment);
+  glAttachShader(ID, vertex);
   glLinkProgram(ID);
   // print linking errors if any
   glGetProgramiv(ID, GL_LINK_STATUS, &success);
   if (!success) {
     glGetProgramInfoLog(ID, 512, NULL, infoLog);
-    std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n"
-              << infoLog << std::endl;
+    Logger::warn("SHADER::PROGRAM::LINKING_FAILED\n" + std::string(infoLog));
   }
 
   // delete the shaders as they're linked into our program now and no longer
@@ -86,7 +86,7 @@ void Shader::setBool(const std::string &name, bool value) const {
   glUniform1i(glGetUniformLocation(ID, name.c_str()), (int)value);
 }
 void Shader::setFloat(const std::string &name, float value) const {
-  glUniform1i(glGetUniformLocation(ID, name.c_str()), value);
+  glUniform1f(glGetUniformLocation(ID, name.c_str()), value);
 }
 void Shader::setFloat2(const std::string &name, float value[2]) const {
   glUniform2f(glGetUniformLocation(ID, name.c_str()), value[0], value[1]);
@@ -102,6 +102,9 @@ void Shader::setFloat4(const std::string &name, float value[4]) const {
 
 void Shader::setInt(const std::string &name, int value) const {
   glUniform1i(glGetUniformLocation(ID, name.c_str()), value);
+}
+void Shader::setInt2(const std::string &name, int value[2]) const {
+  glUniform2i(glGetUniformLocation(ID, name.c_str()), value[0], value[1]);
 }
 
 } // namespace Engine::Draw

@@ -35,6 +35,8 @@ GLFWwindow *create() {
 
 namespace Engine::Callbacks {
 void framebuffer_size_callback(GLFWwindow *window, int width, int height) {
+  Engine::WIDTH = width;
+  Engine::HEIGHT = height;
   glViewport(0, 0, width, height);
 }
 } // namespace Engine::Callbacks
