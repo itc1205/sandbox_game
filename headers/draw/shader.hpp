@@ -1,5 +1,6 @@
 #pragma once
 
+#include "glm/fwd.hpp"
 #include <core/engine.hpp>
 
 namespace Engine::Draw {
@@ -14,11 +15,18 @@ public:
   void setInt(const std::string &name, int value) const;
   void setFloat(const std::string &name, float value) const;
 
-  void setFloat2(const std::string &name, float value[2]) const;
-  void setFloat3(const std::string &name, float value[3]) const;
-  void setFloat4(const std::string &name, float value[4]) const;
+  void setVec2(const std::string &name, const glm::vec2 &value) const;
+  void setVec3(const std::string &name, const glm::vec3 &value) const;
+  void setVec4(const std::string &name, const glm::vec4 &value) const;
 
-  void setInt2(const std::string &name, int value[2]) const;
+  void setVec2(const std::string &name, float x, float y) const;
+  void setVec3(const std::string &name, float x, float y, float z) const;
+  void setVec4(const std::string &name, float x, float y, float z,
+               float w) const;
+
+  void setMat2(const std::string &name, const glm::mat2 &mat) const;
+  void setMat3(const std::string &name, const glm::mat3 &mat) const;
+  void setMat4(const std::string &name, const glm::mat4 &mat) const;
 };
 } // namespace Engine::Draw
   // namespace Engine::Draw
