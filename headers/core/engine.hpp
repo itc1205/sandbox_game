@@ -9,6 +9,7 @@
 #include <GLFW/glfw3.h>
 
 #include <core/input.hpp>
+#include <core/timer.hpp>
 #include <core/window.hpp>
 #include <logger/logger.hpp>
 
@@ -19,6 +20,7 @@ extern uint WIDTH, HEIGHT;
 const auto TITLE = "The sandbox game";
 
 extern GLFWwindow *window;
+extern Timer engine_timer;
 
 void init();
 void setup_callbacks();

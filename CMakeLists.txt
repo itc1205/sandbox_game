@@ -17,6 +17,7 @@ set(SOURCE
     src/draw/shader.cpp
     src/draw/texture.cpp
     src/core/mouse.cpp
+    src/core/timer.cpp
     )
 
 add_executable(app ${SOURCE})
