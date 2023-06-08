@@ -1,3 +1,4 @@
+#include "core/engine.hpp"
 #include <core/input.hpp>
 
 namespace Engine {
@@ -14,6 +15,18 @@ void create_mapping(Key key, std::function<void()> callback) {
     std::list<std::function<void()>> new_key_list;
     new_key_list.push_back(callback);
     key_mapping.insert_or_assign(key, new_key_list);
+  }
+}
+
+void proceed_input() {
+  for (const auto &key : Input::key_mapping) {
+    auto keymap = &key.first;
+    auto callback_list = &key.second;
+    if (glfwGetKey(window, keymap->key) == keymap->action) {
+      for (const auto callback : *callback_list) {
+        callback();
+      }
+    }
   }
 }
 

@@ -22,6 +22,7 @@ struct KeyHasher {
     return (hash<int>()(k.action) ^ (hash<int>()(k.key) << 1));
   }
 };
+void proceed_input();
 
 extern std::unordered_map<Key, std::list<std::function<void()>>, KeyHasher>
     key_mapping;

@@ -24,7 +24,7 @@ void init() {
 
 void setup_callbacks() {
   glfwSetFramebufferSizeCallback(window, Callbacks::framebuffer_size_callback);
-  glfwSetKeyCallback(window, Callbacks::key_callback);
+  // glfwSetKeyCallback(window, Callbacks::key_callback);
   glfwSetCursorPosCallback(window, Callbacks::mouseCallback);
 }
 

@@ -22,6 +22,10 @@ const auto TITLE = "The sandbox game";
 extern GLFWwindow *window;
 extern Timer engine_timer;
 
+extern glm::vec3 cameraPos;
+extern glm::vec3 cameraFront;
+extern glm::vec3 cameraUp;
+
 void init();
 void setup_callbacks();
 int exit_with_error(int error);
