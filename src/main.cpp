@@ -15,15 +15,18 @@
 
 #include <logger/logger.hpp>
 
-void change_to_wireframe_rendering_mode() {
+void change_to_wireframe_rendering_mode()
+{
   glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 }
 
-void change_to_fill_rendering_mode() {
+void change_to_fill_rendering_mode()
+{
   glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
-int main() {
+int main()
+{
   Engine::init();
   Engine::Window::create();
   Engine::Input::create_mapping(Engine::Input::Key{GLFW_KEY_SPACE, GLFW_PRESS},
@@ -122,7 +125,8 @@ int main() {
   shader.setInt("texture1", wood_texture.NT);
   shader.setInt("texture2", face_texture.NT);
 
-  while (!Engine::shouldClose()) {
+  while (!Engine::shouldClose())
+  {
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -146,7 +150,8 @@ int main() {
                                 // set it outside the main loop only once.
     shader.setMat4("view", view);
     glBindVertexArray(VAO);
-    for (unsigned int i = 0; i < 10; i++) {
+    for (unsigned int i = 0; i < 10; i++)
+    {
       // calculate the model matrix for each object and pass it to shader before
       // drawing
       glm::mat4 model = glm::mat4(1.0f);

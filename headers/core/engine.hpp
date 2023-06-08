@@ -12,19 +12,20 @@
 #include <core/window.hpp>
 #include <logger/logger.hpp>
 
-namespace Engine {
+namespace Engine
+{
 
-extern uint WIDTH, HEIGHT;
+    extern uint WIDTH, HEIGHT;
 
-const auto TITLE = "The sandbox game";
+    const auto TITLE = "The sandbox game";
 
-extern GLFWwindow *window;
+    extern GLFWwindow *window;
 
-void init();
-void setup_callbacks();
-int exit_with_error(int error);
-void tick();
-bool shouldClose();
-void terminate();
+    void init();
+    void setup_callbacks();
+    int exit_with_error(int error);
+    void tick();
+    bool shouldClose();
+    void terminate();
 
 } // namespace Engine
