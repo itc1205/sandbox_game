@@ -51,7 +51,6 @@ Shader::Shader(const char *vertexPath, const char *fragmentPath) {
   };
 
   // similiar for Fragment Shader
-
   fragment = glCreateShader(GL_FRAGMENT_SHADER);
   glShaderSource(fragment, 1, &fShaderCode, NULL);
   glCompileShader(fragment);
@@ -74,6 +73,7 @@ Shader::Shader(const char *vertexPath, const char *fragmentPath) {
     glGetProgramInfoLog(ID, 512, NULL, infoLog);
     Logger::warn("SHADER::PROGRAM::LINKING_FAILED\n" + std::string(infoLog));
   }
+  Logger::info("Shader has been compiled succesfully");
 
   // delete the shaders as they're linked into our program now and no longer
   // necessary

@@ -33,12 +33,15 @@ int exit_with_error(int error) {
   exit(error);
 }
 
-void tick() {
+void report_framerate() {
   std::cout << "Frame was rendered with: " << engine_timer.get_tick_time()
             << std::endl;
   std::cout << "Time engine is working: " << engine_timer.get_time()
             << std::endl;
   std::cout << "Fps is: " << engine_timer.get_fps() << std::endl;
+}
+
+void tick() {
   glfwSwapBuffers(window);
   glfwPollEvents();
 }
