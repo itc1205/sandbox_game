@@ -9,3 +9,5 @@ add_subdirectory(glad)
 target_include_directories(glad INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}") # Not sure how to include dir for a target wise build so be it
 #glm
 add_subdirectory(glm)
+#freetype
+add_subdirectory(freetype)

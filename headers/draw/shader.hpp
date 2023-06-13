@@ -10,6 +10,7 @@ namespace Engine::Draw
   public:
     uint ID;
     Shader(const char *vertexPath, const char *fragmentPath);
+    Shader();
 
     void use();
 
